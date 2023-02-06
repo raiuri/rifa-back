@@ -2,8 +2,9 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindOneOptions, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
+import { UserOptions } from './types/UserOptions';
 
 @Injectable()
 export class UserService {
@@ -21,24 +22,24 @@ export class UserService {
     return await this.userRepository.find({ select: ['id', 'lastName', 'email'] })
   }
 
-  async findOneOrFail(id: string) {
-    const user = await this.userRepository.findOneBy({ id });
+  async findOneOrFail(options: UserOptions) {
+    const user = await this.userRepository.findOneBy(options);
 
     if (!user) {
-      throw new NotFoundException(`User with ID "${id}" not found`);
+      throw new NotFoundException(`User not found`);
     }
 
     return user;
   }
 
   async update(id: string, updateUserDto: UpdateUserDto) {
-    const user = await this.findOneOrFail(id);
+    const user = await this.findOneOrFail({ id });
     this.userRepository.merge(user, updateUserDto);
     return await this.userRepository.save(user);
   }
 
   async remove(id: string) {
-    await this.findOneOrFail(id);
+    await this.findOneOrFail({ id });
     this.userRepository.softDelete({ id });
   }
 }

@@ -4,12 +4,12 @@ import { RegExUtils } from "src/utils/regex.utils";
 
 export class CreateUserDto {
     @IsNotEmpty()
-    firstName: string;
+    firstName?: string;
     @IsNotEmpty()
-    lastName: string;
+    lastName?: string;
     @IsNotEmpty()
     @IsEmail()
-    email: string;
+    email?: string;
     @IsNotEmpty()
     @Matches(RegExUtils.password, { message: MessagesUtils.PASSWORD_VALID })
     password: string;
