@@ -5,21 +5,24 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { AuthGuard } from '@nestjs/passport';
 
 @Controller('api/user')
-@UseGuards(AuthGuard('jwt'))
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
   @Post()
   async create(@Body() createUserDto: CreateUserDto) {
+    console.log(createUserDto);
     return await this.userService.create(createUserDto);
   }
 
-  @Get()
-  async findAll() {
-    return await this.userService.findAll();
-  }
+  // deletar essa rota por enquanto
+  // @Get()
+  // @UseGuards(AuthGuard('jwt'))
+  // async findAll() {
+  //   return await this.userService.findAll();
+  // }
 
   @Get(':id')
+  @UseGuards(AuthGuard('jwt'))
   async findOne(@Param('id', new ParseUUIDPipe()) id: string) {
     return await this.userService.findOneOrFail({ id });
   }
