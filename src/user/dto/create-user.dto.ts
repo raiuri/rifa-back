@@ -1,6 +1,6 @@
 import { IsEmail, IsNotEmpty, Matches } from "class-validator";
-import { MessagesUtils } from "src/utils/messages.utils";
-import { RegExUtils } from "src/utils/regex.utils";
+import { MessagesUtils } from "src/shared/constants/messages";
+import { RegExUtils } from "src/shared/constants/regex";
 
 export class CreateUserDto {
     @IsNotEmpty()

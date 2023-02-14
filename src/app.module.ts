@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { TicketModule } from './ticket/ticket.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
   imports: [
@@ -23,9 +24,12 @@ import { TicketModule } from './ticket/ticket.module';
     } as MysqlConnectionOptions),
     AuthModule,
     UserModule,
-    TicketModule
+    TicketModule,
+    PaymentModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService
+  ]
 })
 export class AppModule { }

@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { User } from 'src/user/entities/user.entity';
 import { UserService } from 'src/user/user.service';
 import { compareSync } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
@@ -14,12 +13,11 @@ export class AuthService {
         const payload = { sub: user.id, email: user.email }
 
         return {
-            userId: user.id,
             token: this.jwtService.sign(payload)
         }
     }
     async validateUser(email: string, password: string) {
-        let user: User;
+        let user: any;
         try {
             user = await this.userService.findOneOrFail({ email });
         } catch (error) {
@@ -27,7 +25,6 @@ export class AuthService {
         }
         const isPasswordValid = compareSync(password, user.password);
         if (!isPasswordValid) return null;
-
         return user;
     }
 }

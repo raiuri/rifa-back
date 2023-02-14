@@ -5,13 +5,15 @@ import { Repository } from 'typeorm';
 import { CreateTicketDto } from './dto/create-ticket.dto';
 import { UpdateTicketDto } from './dto/update-ticket.dto';
 import { Ticket } from './entities/ticket.entity';
+import { PaymentService } from 'src/payment/payment.service';
 
 @Injectable()
 export class TicketService {
   constructor(
     @InjectRepository(Ticket)
     private readonly ticketRepository: Repository<Ticket>,
-    private readonly userService: UserService
+    private readonly userService: UserService,
+    private readonly paymentService: PaymentService,
   ) {
   }
   async create(createTicketDto: CreateTicketDto, id: string) {
