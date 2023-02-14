@@ -12,7 +12,7 @@ import { PaymentModule } from './payment/payment.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      ignoreEnvFile: true,
+      isGlobal: true,
     }),
     TypeOrmModule.forRoot({
       type: process.env.DATABASE_DRIVE,
