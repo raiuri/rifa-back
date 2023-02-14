@@ -4,7 +4,7 @@ import axios from 'axios';
 import * as fs from 'fs';
 import { redisClient } from 'src/utils/redis-cliente';
 
-let certificate = fs.readFileSync("src/../cert/producao-315322-rifa.p12");
+let certificate = fs.readFileSync("src/../certs/producao-315322-rifa.p12");
 let credentials = {
     client_id: "Client_Id_9e3450b6e9ac4d988af977f6dd0579f19bcb0d12",
     client_secret: "Client_Secret_d200dad501e3c48feac0001751445bd4fb18425c",
