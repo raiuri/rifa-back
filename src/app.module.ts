@@ -11,7 +11,9 @@ import { PaymentModule } from './payment/payment.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot(),
+    ConfigModule.forRoot({
+      ignoreEnvFile: true,
+    }),
     TypeOrmModule.forRoot({
       type: process.env.DATABASE_DRIVE,
       host: process.env.DATABASE_HOST,
