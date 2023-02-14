@@ -11,7 +11,6 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
     imports: [
-        ConfigModule.forRoot(),
         UserModule,
         PassportModule,
         JwtModule.register({
