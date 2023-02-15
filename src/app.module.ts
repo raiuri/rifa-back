@@ -13,7 +13,7 @@ import { PaymentModule } from './payment/payment.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: ['.env.development.local', '.env.development', '.env'],
+      envFilePath: process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env',
     }),
     TypeOrmModule.forRoot({
       type: process.env.DATABASE_DRIVE,
