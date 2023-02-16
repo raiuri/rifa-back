@@ -7,7 +7,18 @@ services:
     volumes:
       - .:/app
     environment:
+      JWT_SECRET_KEY: Ul1jI0AYD2B45n0w9e6mEDlxvtqaTRiPVCK4TR5lUFcEL
       NODE_ENV: production
+      DATABASE_DRIVE: postgres
+      DATABASE_HOST: babar.db.elephantsql.com
+      DATABASE_PORT: 5432
+      DATABASE_USERNAME: pcfeecvj
+      DATABASE_PASSWORD: oKH1E8w26UBj5MgwJAryGjU6gamwmm7T
+      DATABASE_NAME: pcfeecvj
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: Ju28dsliuaudiYDls32Ilid21kxspopoaubw435
+      REDIS_DB: 0
   redis:
     image: redis
     ports:
